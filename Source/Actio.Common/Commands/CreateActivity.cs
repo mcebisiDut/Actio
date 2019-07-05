@@ -3,7 +3,7 @@ using Actio.Common.ICommands;
 
 namespace Actio.Common.Commands
 {
-    public class CreateActivity : IAuthenticateUser
+    public class CreateActivity : IAuthenticateCommand
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }

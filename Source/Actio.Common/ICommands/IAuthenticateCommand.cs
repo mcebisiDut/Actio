@@ -2,8 +2,8 @@ using System;
 
 namespace Actio.Common.ICommands
 {
-    public interface IAuthenticateUser : ICommand
+    public interface IAuthenticateCommand : ICommand
     {
-        Guid UserId { get; set; }
+         Guid UserId{get;set;}
     }
 }

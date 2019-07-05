@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Actio.Common.Events;
 using Actio.Common.IEvents;
 
-namespace Actio.Api.Handlers
+namespace Actio.API.Handlers
 {
     public class ActivityCreatedHandler : IEventHandler<ActivityCreated>
     {

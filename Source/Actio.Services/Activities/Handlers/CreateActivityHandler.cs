@@ -5,7 +5,7 @@ using Actio.Common.Events;
 using Actio.Common.ICommands;
 using RawRabbit;
 
-namespace Actio.Activities.Handlers
+namespace Activities.Handlers
 {
     public class CreateActivityHandler : ICommandHandler<CreateActivity>
     {
@@ -18,7 +18,7 @@ namespace Actio.Activities.Handlers
         public async Task HandleAsync(CreateActivity command)
         {
             Console.WriteLine($"Creating activity: {command.Name}");
-            await _busClient.PublishAsync(new ActivityCreated(command.Id,command.UserId,command.Category,command.Name,command.Description,command.CreatedAt));
+            await _busClient.PublishAsync(new ActivityCreated(command.Id, command.UserId, command.Category, command.Name, command.Description, command.CreatedAt));
         }
     }
 }

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Actio.Common\Actio.Common.csproj" />
+    <ProjectReference Include="..\..\Actio.Common\Actio.Common.csproj" />
   </ItemGroup>
 
 </Project>

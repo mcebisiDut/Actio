@@ -4,7 +4,7 @@ using Actio.Common.Commands;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 
-namespace Actio.Api.Controllers
+namespace Actio.API.Controllers
 {
     [Route("[controller]")]
     public class ActivitiesController : Controller
@@ -22,7 +22,7 @@ namespace Actio.Api.Controllers
             command.CreatedAt = DateTime.UtcNow;
             await _busClient.PublishAsync(command);
 
-            return Accepted($"activities/{command.Id}");
+            return Accepted($"Activities/{command.Id}");
         }
     }
 }

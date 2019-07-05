@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Actio.API.Handlers;
-using Actio.Common.Events;
-using Actio.Common.IEvents;
+using Actio.Common.Commands;
+using Actio.Common.ICommands;
 using Actio.Common.RabbitMq;
+using Activities.Handlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Actio.API
+namespace Activities
 {
     public class Startup
     {
@@ -31,7 +31,7 @@ namespace Actio.API
         {
             services.AddMvc();
             services.AddRabbitMq(Configuration);
-            services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

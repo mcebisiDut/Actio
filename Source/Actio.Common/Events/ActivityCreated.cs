@@ -25,6 +25,5 @@ namespace Actio.Common.Events
             Description = description;
             CreatedAt = createdAt;
         }
-
     }
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Actio.Common.Events;
+using Actio.Common.Commands;
 using Actio.Common.Services;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Actio.API
+namespace Authentication
 {
     public class Program
     {
@@ -18,7 +18,7 @@ namespace Actio.API
         {
             ServiceHost.Create<Startup>(args)
                         .UseRabbitMq()
-                        .SubscribeToEvent<ActivityCreated>()
+                        .SubscribeToCommand<CreateUser>()
                         .Build()
                         .Run();
         }
