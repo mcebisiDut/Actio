@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Actio.Common.Commands;
+using Actio.Common.ICommands;
+using Actio.Common.Mongo;
+using Actio.Common.RabbitMq;
+using Authentication.Encryption;
+using Authentication.Handlers;
+using Authentication.IEncryption;
+using Authentication.IRepositories;
+using Authentication.IServices;
+using Authentication.Repositories;
+using Authentication.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +37,13 @@ namespace Authentication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddLogging();
+            services.AddMongoDB(Configuration);
+            services.AddRabbitMq(Configuration);
+            services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();
+            services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,8 +57,7 @@ namespace Authentication
             {
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
             app.UseMvc();
         }
     }

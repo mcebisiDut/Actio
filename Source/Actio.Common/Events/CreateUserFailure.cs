@@ -2,17 +2,17 @@ using Actio.Common.IEvents;
 
 namespace Actio.Common.Events
 {
-    public class CreatedUserFailure : IFailureEvent
+    public class CreateUserFailure : IFailureEvent
     {
         public string Email { get; }
         public string Message { get; }
         public string Code { get; }
 
-        public CreatedUserFailure()
+        public CreateUserFailure()
         {
         }
 
-        public CreatedUserFailure(string email, string message, string code)
+        public CreateUserFailure(string email, string message, string code)
         {
             Email = email;
             Message = message;
