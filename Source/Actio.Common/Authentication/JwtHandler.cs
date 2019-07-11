@@ -32,11 +32,11 @@ namespace Actio.Common.Authentication
 
         public JsonWebToken Create(Guid userId)
         {
-            var nowUtc = DateTime.UtcNow;
-            var expires = nowUtc.AddMinutes(_options.ExpiryMinutes);
+            var currentTime = DateTime.UtcNow;
+            var expiryTime = currentTime.AddMinutes(_options.ExpiryMinutes);
             var centuryBegin = new DateTime(1970, 1, 1).ToUniversalTime();
-            var exp = (long)(new TimeSpan(expires.Ticks - centuryBegin.Ticks).TotalSeconds);
-            var now = (long)(new TimeSpan(nowUtc.Ticks - centuryBegin.Ticks).TotalSeconds);
+            var exp = (long)(new TimeSpan(expiryTime.Ticks - centuryBegin.Ticks).TotalSeconds);
+            var now = (long)(new TimeSpan(currentTime.Ticks - centuryBegin.Ticks).TotalSeconds);
             var payload = new JwtPayload
             {
                 {"sub", userId},

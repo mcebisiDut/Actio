@@ -1,9 +1,8 @@
 using System;
-using Actio.Common.IEvents;
 
-namespace Actio.Common.Events
+namespace Actio.Api.Models
 {
-    public class UserCreated : IEvent
+    public class User
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
@@ -11,15 +10,5 @@ namespace Actio.Common.Events
         public string Password { get; set; }
         public string Salt { get; set; }
         public DateTime CreatedAt { get; set; }
-
-        protected UserCreated()
-        {
-        }
-
-        public UserCreated(string email, string name)
-        {
-            Email = email;
-            Name = name;
-        }
     }
 }

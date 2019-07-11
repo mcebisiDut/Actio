@@ -13,14 +13,14 @@ namespace Actio.Common.Authentication
             var options = new JwtOptions();
             var section = configuration.GetSection("jwt");
             section.Bind(options);
-            services.Configure<JwtOptions>(configuration.GetSection("jwt"));
+            services.Configure<JwtOptions>(section);
             services.AddSingleton<IJwtHandler, JwtHandler>();
             services.AddAuthentication()
-                .AddJwtBearer(cfg =>
+                .AddJwtBearer(config =>
                 {
-                    cfg.RequireHttpsMetadata = false;
-                    cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    config.RequireHttpsMetadata = false;
+                    config.SaveToken = true;
+                    config.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateAudience = false,
                         ValidIssuer = options.Issuer,

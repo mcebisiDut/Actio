@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Authentication.IRepositories;
 using Authentication.Models;
@@ -27,6 +28,12 @@ namespace Authentication.Repositories
         public async Task AddAsync(User user)
             => await Collection
                         .InsertOneAsync(user);
+
+        public async Task<IEnumerable<User>> BrowseAsync(string name)
+            => await Collection
+                        .AsQueryable()
+                        .Where(user => user.Name == name.ToLowerInvariant())
+                        .ToListAsync();
 
         private IMongoCollection<User> Collection
             => _database.GetCollection<User>("Activities");
